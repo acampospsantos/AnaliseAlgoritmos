@@ -1,6 +1,6 @@
 package Recursividade;
 
-public class Potência {
+public class Potencia {
 	
 	int calculoPotencia(int x, int n) { //x -> base da potencia, n -> expoente
 		if(n==0) {
