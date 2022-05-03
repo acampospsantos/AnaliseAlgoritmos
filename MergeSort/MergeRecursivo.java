@@ -29,28 +29,29 @@ public class MergeRecursivo {
     // Second subarray is arr[m+1..r]
     public static void mergeSort(int[] v, int left, int middle, int right) {
 		System.out.println("- MergeSort -");
-         // Find sizes of two subarrays to be merged
+        
+        //Encontra tamanhos de dois subarray's a serem mesclados
 		int n1 = middle - left + 1;
 		int n2 = right - middle;
 
-        //Create temp arrays 
+        //Cria Array's temporários
 		int L[] = new int[n1];
 		int R[] = new int[n2];
 
-        //Copy data to temp arrays
-		for (int i = 0; i < n1; ++i) {
+        //Copia(passa) os dados para os Arrays temporários
+		for (int i = 0; i < n1; i=i+1) {
 			L[i] = v[left + i];
 		}
-		for (int j = 0; j < n2; ++j) {
+		for (int j = 0; j < n2; j=j+1) {
 			R[j] = v[middle + 1 + j];
 		}
 
-        //Merge the temp arrays
+        //Mescla os Arrays temporários
 
-        // Initial indexes of first and second subarrays
+        //Índices iniciais do primeiro e segundo subarray's 
 		int i = 0, j = 0;
 
-        // Initial index of merged subarray array
+        //Índice inicial do SubArray do Array mesclado
 		int k = left;
 		while (i < n1 && j < n2) {
 			if (L[i] <= R[j]) {
@@ -63,14 +64,14 @@ public class MergeRecursivo {
 			k = k + 1;
 		}
 
-        //Copy remaining elements of L[] if any        
+        //Copia os elementos restantes de L[] se houver   
 		while (i < n1) {
 			v[k] = L[i];
 			i = i + 1;
 			k = k + 1;
 		}
 
-        //Copy remaining elements of R[] if any
+        //Copia os elementos restantes de R[] se houver
 		while (j < n2) {
 			v[k] = R[j];
 			j = j + 1;
@@ -79,18 +80,18 @@ public class MergeRecursivo {
 	}
 
 
-    // Main function that sorts arr[l..r] using merge()
+    // Função principal que ordena o Array[l...r] justamente fazendo a mesclagem(merge)
 	public static void sort(int arr[], int l, int r) { //l == índice do primeiro elemento do Array, r == índice do último elemento do Array
 		
-		if (l < r) { //Nessa condição: Encontra o ponto médio para dividir a matriz em duas metades:  
-            // Find the middle point
-			int meio = l + (r - l) / 2; // == int meio = r / 2  ===> Significa: Pegar o índice do último elemento do vetor e dividir por 2 -> Acharemos o índice do elemento que fico na metade do vetor
+		if (l < r) { //Nessa condição: Encontra o ponto médio para dividir o Array em duas metades:  
+            // Encontra o elemento do meio(central)
+			int meio = l + (r - l) / 2; 
 			
-            // Sort first and second halves
+            // Ordena a primeira e a segunda metade
 			sort(arr, l, meio); //Chama mergeSort para a primeira metade
 			sort(arr, meio + 1, r); //Chama mergeSort para a segunda metade
 
-            // Merge the sorted halves
+            // Mescla as metades ordenadas 
 			mergeSort(arr, l, meio, r); //Mescla as duas metades
 		
 		} else{ // (l == r) --> Nesse caso, o vetor só tem um elemento, ou seja, não tem oq ordenar
@@ -126,13 +127,13 @@ public class MergeRecursivo {
         if(array.length > 1) {
             int mid = array.length / 2;
  
-            // Split left part
+            // Divide parte da esquerda
             int[] left = new int[mid];
             for(int i = 0; i < mid; i=i+1) {
                 left[i] = array[i];
             }
              
-            // Split right part
+            // Divide parte da direita 
             int[] right = new int[array.length - mid];
             for(int i = mid; i < array.length; i=i+1) {
                 right[i - mid] = array[i];
@@ -144,7 +145,7 @@ public class MergeRecursivo {
             int j = 0;
             int k = 0;
  
-            // Merge left and right arrays
+            // Mescla Array da esquerda e da direita
             while(i < left.length && j < right.length) {
                 if(left[i] < right[j]) {
                     array[k] = left[i];
@@ -157,7 +158,7 @@ public class MergeRecursivo {
                 k=k+1;
             }
 
-            // Collect remaining elements
+            // Coleta os elementos restantes
             while(i < left.length) {
                 array[k] = left[i];
                 i=i+1;
