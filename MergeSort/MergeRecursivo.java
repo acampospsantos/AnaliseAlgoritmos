@@ -24,62 +24,6 @@ public class MergeRecursivo {
 
 
     
-    // Merges two subarrays of arr[].
-    // First subarray is arr[l..m]
-    // Second subarray is arr[m+1..r]
-    public static void mergeSort(int[] v, int left, int middle, int right) {
-		System.out.println("- MergeSort -");
-        
-        //Encontra tamanhos de dois subarray's a serem mesclados
-		int n1 = middle - left + 1;
-		int n2 = right - middle;
-
-        //Cria Array's temporários
-		int L[] = new int[n1];
-		int R[] = new int[n2];
-
-        //Copia(passa) os dados para os Arrays temporários
-		for (int i = 0; i < n1; i=i+1) {
-			L[i] = v[left + i];
-		}
-		for (int j = 0; j < n2; j=j+1) {
-			R[j] = v[middle + 1 + j];
-		}
-
-        //Mescla os Arrays temporários
-
-        //Índices iniciais do primeiro e segundo subarray's 
-		int i = 0, j = 0;
-
-        //Índice inicial do SubArray do Array mesclado
-		int k = left;
-		while (i < n1 && j < n2) {
-			if (L[i] <= R[j]) {
-				v[k] = L[i];
-				i = i + 1;
-			} else {
-				v[k] = R[j];
-				j = j + 1;
-			}
-			k = k + 1;
-		}
-
-        //Copia os elementos restantes de L[] se houver   
-		while (i < n1) {
-			v[k] = L[i];
-			i = i + 1;
-			k = k + 1;
-		}
-
-        //Copia os elementos restantes de R[] se houver
-		while (j < n2) {
-			v[k] = R[j];
-			j = j + 1;
-			k = k + 1;
-		}
-	}
-
-
     // Função principal que ordena o Array[l...r] justamente fazendo a mesclagem(merge)
 	public static void sort(int arr[], int l, int r) { //l == índice do primeiro elemento do Array, r == índice do último elemento do Array
 		
@@ -98,6 +42,64 @@ public class MergeRecursivo {
 			System.out.println("Partição feita!");
 		}
 	}
+
+
+
+    // Mescla dois subarry's do Array Original[]
+    // Primeiro subArray é arr[l..m]
+    // Segundo SubArray é arr[m+1..r]
+    public static void mergeSort(int[] vetor, int left, int middle, int right) {
+		System.out.println("- MergeSort -");
+        
+        //Encontra os tamanhos dos dois subarray's a serem mesclados
+		int n1 = middle - left + 1;
+		int n2 = right - middle;
+
+        //Cria Array's temporários
+		int L[] = new int[n1];
+		int R[] = new int[n2];
+
+        //Copia(passa/preenche) os dados para os Arrays temporários
+		for (int i = 0; i < n1; i=i+1) {
+			L[i] = vetor[left + i];
+		}
+		for (int j = 0; j < n2; j=j+1) {
+			R[j] = vetor[middle + 1 + j];
+		}
+
+        //Mescla os Arrays temporários
+
+        //Índices iniciais do primeiro e segundo subarray's 
+		int i = 0, j = 0;
+
+        //Índice inicial do SubArray do Array mesclado
+		int k = left;
+		while (i < n1 && j < n2) {
+			if (L[i] <= R[j]) {
+				vetor[k] = L[i];
+				i = i + 1;
+			} else {
+				vetor[k] = R[j];
+				j = j + 1;
+			}
+			k = k + 1;
+		}
+
+        //Copia os elementos restantes de L[] se houver   
+		while (i < n1) {
+			vetor[k] = L[i];
+			i = i + 1;
+			k = k + 1;
+		}
+
+        //Copia os elementos restantes de R[] se houver
+		while (j < n2) {
+			vetor[k] = R[j];
+			j = j + 1;
+			k = k + 1;
+		}
+	}
+       
     
 
     /* EXPLICAÇÕES:
